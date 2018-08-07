@@ -10,4 +10,4 @@ COPY static/named.conf.options /etc/bind/
 
 EXPOSE 53/udp
 
-ENTRYPOINT rndc-confgen -a  > /dev/null 2>&1 ; service cron start > /dev/null 2>&1 ; service bind9 start > /dev/null 2>&1 ; /bin/bash
+ENTRYPOINT rndc-confgen -a  > /dev/null 2>&1 ; chown bind /etc/bind/rndc.key ; service cron start > /dev/null 2>&1 ; service bind9 start > /dev/null 2>&1 ; /bin/bash
