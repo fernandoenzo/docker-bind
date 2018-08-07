@@ -1,0 +1,54 @@
+;###############################################################
+;#  Archivo de Configuración de un registro master para bind9  #
+;#  ---------------------------------------------------------  #
+;#                                                             #
+;# Todas las @ del archivo son sustituidas por $ORIGIN.        #
+;#                                                             #
+;# Configuración de parámetros principales, en segundos:       #
+;#                                                             #
+;# TTL: Tiempo máximo que se almacena en la caché de otros     #
+;#      servidores DNS y aplicaciones en internet la           #
+;#      información enviada antes de descartarla.              #
+;#                                                             #
+;# Refresh: Indica cada cuánto tiempo un sevidor secundario    #
+;#          debe conectarse al principal para comprobar si hay #
+;#          actualizaciones en función del Serial.             #
+;#                                                             #
+;# Retry: Indica cada cuánto tiempo un servidor secundario     #
+;#        reintenta conectarse al principal para actualizarse  #
+;#        en caso de error.                                    #
+;#                                                             #
+;# Expire: Tiempo máximo que un servidor secundario almacena   #
+;#         la información del principal antes de vaciar sus    #
+;#         tablas en caso de no haber podido conectarse para   #
+;#         actualizarse.                                       #
+;#                                                             #
+;# Negative TTL: Tiempo máximo que se almacena en la caché     #
+;#               de otros servidores DNS y aplicaciones en     #
+;#               internet una respuesta del tipo "no existe el #
+;#               subdominio que estás buscando"                #
+;#                                                             #
+;###############################################################
+
+$ORIGIN mydomain.com.
+$TTL    1440 ; Time-To-Live (1 hora)
+@ IN SOA ns.mydomain.com. postmaster.mydomain.com. (  ; Todas las @ de este archivo son sustituidas por $ORIGIN
+        2018022500  ; Serial
+        86400       ; Refresh (1 dia)
+        7200        ; Retry (2 horas)
+        2592000     ; Expire (30 dias)
+        172800 )    ; Negative Cache TTL (2 dias)
+
+@       IN  NS  ns.mydomain.com.
+@       IN  MX  100 correos.mydomain.com.
+@       IN  A   80.36.153.17
+
+; Se recomienda tener la entrada localhost.mydomain.com
+localhost   IN  A   127.0.0.1
+
+ns         IN  A   80.36.153.17
+correos    IN  A   80.36.153.17
+www        IN  CNAME   @
+pop        IN  CNAME   correos
+imap       IN  CNAME   correos
+smtp       IN  CNAME   correos
