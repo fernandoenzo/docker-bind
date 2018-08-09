@@ -1,0 +1,16 @@
+[Unit]
+Description=Docker Bind container
+Requires=docker.service
+PartOf=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+TimeoutStartSec=infinity
+ExecStart=/usr/bin/docker run -t --init --rm -p 53:53/udp --name Bind --hostname Bind fernandoenzo/bind
+ExecStop=-/usr/bin/docker stop Bind
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
