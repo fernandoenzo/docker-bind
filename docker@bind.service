@@ -7,7 +7,8 @@ Wants=network-online.target
 
 [Service]
 TimeoutStartSec=infinity
-ExecStart=/usr/bin/docker run -t --init --rm -p 53:53/udp --name Bind --hostname Bind fernandoenzo/bind
+ExecStartPre=/usr/bin/docker run -d -it --init --rm -p 53:53/udp --name Bind --hostname Bind fernandoenzo/bind
+ExecStart=/usr/bin/docker logs -f Bind
 ExecStop=-/usr/bin/docker stop Bind
 SuccessExitStatus=143
 
