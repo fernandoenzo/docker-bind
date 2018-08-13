@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+rndc-confgen -a  > /dev/null 2>&1
+chown bind /etc/bind/rndc.key
+service cron start > /dev/null 2>&1
+service bind9 start > /dev/null 2>&1
+exec /bin/bash -c "$@"
+
