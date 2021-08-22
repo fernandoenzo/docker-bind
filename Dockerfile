@@ -1,4 +1,4 @@
-FROM fernandoenzo/debian:10s-min
+FROM ghcr.io/fernandoenzo/debian:11
 MAINTAINER Fernando Enzo Guarini (fernandoenzo@gmail.com)
 
 COPY scripts/basics /tmp
