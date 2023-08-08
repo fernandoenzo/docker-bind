@@ -1,7 +1,6 @@
 [Unit]
 Description=Docker Bind container
 Requires=docker.service
-PartOf=docker.service
 After=docker.service network-online.target
 Wants=network-online.target
 

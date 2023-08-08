@@ -3,7 +3,14 @@
 set -e  # Exit immediately if a command exits with a non-zero status.
 set -x  # All executed commands are printed to the terminal
 
+mv /tmp/contents/scripts/boot /usr/local/boot
+
 aptitude update ; aptitude install -y bind9
+
+mv /tmp/contents/static/db.generic /etc/bind/
+mv /tmp/contents/static/named.conf.local /etc/bind/
+mv /tmp/contents/static/named.conf.options /etc/bind/
+
 apt-get -y autoremove ; aptitude -y autoclean ; apt-get -y autoclean
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/.aptitude /etc/bind/rndc.key
 

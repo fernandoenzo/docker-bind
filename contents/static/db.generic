@@ -33,7 +33,7 @@
 $ORIGIN mydomain.com.
 $TTL    1440 ; Time-To-Live (1 hora)
 @ IN SOA ns.mydomain.com. postmaster.mydomain.com. (  ; Todas las @ de este archivo son sustituidas por $ORIGIN
-        2018022500  ; Serial
+        2023082500  ; Serial
         86400       ; Refresh (1 dia)
         7200        ; Retry (2 horas)
         2592000     ; Expire (30 dias)
