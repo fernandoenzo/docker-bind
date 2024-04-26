@@ -5,7 +5,7 @@ set -x  # All executed commands are printed to the terminal
 
 mv /tmp/contents/scripts/boot /usr/local/boot
 
-aptitude update ; aptitude install -y bind9
+aptitude update ; aptitude install -y bind9 dnsutils
 
 mv /tmp/contents/static/db.generic /etc/bind/
 mv /tmp/contents/static/named.conf.local /etc/bind/
