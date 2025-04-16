@@ -6,10 +6,12 @@ Wants=network-online.target
 
 [Service]
 TimeoutStartSec=infinity
+TimeoutStopSec=10
 ExecStartPre=/usr/bin/docker run -d -it --init --rm -p 53:53/udp --name Bind --hostname Bind ghcr.io/fernandoenzo/bind:latest
 ExecStart=/usr/bin/docker logs -f Bind
 ExecStop=-/usr/bin/docker stop Bind
 SuccessExitStatus=143
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
